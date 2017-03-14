@@ -1,3 +1,8 @@
+var links = document.getElementsByTagName('a');
+for(var i = 0; i < links.length; i++) {
+  links[i].target = "_blank";
+}
+
 particlesJS("particular", {
   "particles": {
     "number": {
@@ -66,11 +71,11 @@ particlesJS("particular", {
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": true,
+        "enable": false,
         "mode": "grab"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "push"
       },
       "resize": true
