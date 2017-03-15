@@ -1,6 +1,4 @@
-/**/
-/**   CSS Resets + Basics! :O
-/**/
+/* Page Style */
 body {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 15px;
@@ -15,9 +13,7 @@ h1, h2, h3, h4, h5 {
   line-height: 1.2em;
 }
 
-/**/
-/**   Top Banner! :D
-/**/
+/* Top Banner */
 .banner {
   background: #3c404a;
   position: relative;
@@ -67,4 +63,47 @@ h1, h2, h3, h4, h5 {
 
 .gist * {
   font-family: "Lucida Console", Monaco, monospace !important;
+}
+
+/* Social Media Icons */
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?nvfvnm');
+  src:  url('fonts/icomoon.eot?nvfvnm#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?nvfvnm') format('truetype'),
+    url('fonts/icomoon.woff?nvfvnm') format('woff'),
+    url('fonts/icomoon.svg?nvfvnm#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook:before {
+  content: "\ea90";
+}
+.icon-facebook2:before {
+  content: "\ea91";
+}
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-linkedin:before {
+  content: "\eac9";
+}
+.icon-linkedin2:before {
+  content: "\eaca";
 }
