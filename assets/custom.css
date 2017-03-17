@@ -1,6 +1,6 @@
 /* Page Style */
 body {
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Source Code Pro', monospace;
   font-size: 15px;
   height: 100%;
   color: #444;
@@ -59,10 +59,6 @@ h1, h2, h3, h4, h5 {
   color: #555;
   font-weight: bold;
   margin-top: 1.5em;
-}
-
-.gist * {
-  font-family: "Lucida Console", Monaco, monospace !important;
 }
 
 /* Social Media Icons */
