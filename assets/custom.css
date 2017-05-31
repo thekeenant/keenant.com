@@ -31,24 +31,32 @@ h1, h2, h3, h4, h5 {
 .banner .lead h1 {
   font-size: 3em;
   font-weight: bolder;
+  margin-bottom: 0;
+}
+.banner .lead h2 {
+  font-size: 1em;
+  font-weight: lighter;
+  margin: 0;
+  padding: 0;
 }
 .banner .lead .lead-social {
   font-size: 1.7em;
 }
 .banner .lead .lead-social a {
   text-decoration: none !important;
-  color: #e8e8e8;
+  color: #fff;
   margin-right: 15px;
+  opacity: 0.7;
 }
 .banner .lead .lead-social a:hover {
   color: #fff;
+  opacity: 0.9;
 }
 
 .container {
   max-width: 650px;
-  padding: 0 15px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding: 0 15px 50px;
 }
 .container h1:before {
   content: "# ";
@@ -72,7 +80,7 @@ h1, h2, h3, h4, h5 {
   font-weight: normal;
   font-style: normal;
 }
-
+/*noinspection CssNoGenericFontName*/
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -87,7 +95,6 @@ h1, h2, h3, h4, h5 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .icon-facebook:before {
   content: "\ea90";
 }
