@@ -46,7 +46,7 @@ particlesJS("particular", {
       }
     },
     "line_linked": {
-      "enable": true,
+      "enable": false,
       "distance": 150,
       "color": "#fff",
       "opacity": 0.4,
@@ -71,7 +71,7 @@ particlesJS("particular", {
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": false,
+        "enable": true,
         "mode": "grab"
       },
       "onclick": {
