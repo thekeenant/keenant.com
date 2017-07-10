@@ -15,7 +15,8 @@ h1, h2, h3, h4, h5 {
 
 /* Top Banner */
 .banner {
-  background: #3c404a;
+  background-image: url(https://s3-us-west-2.amazonaws.com/keenant/nebula.jpg);
+  background-size: cover;
   position: relative;
   height: 300px;
 }
