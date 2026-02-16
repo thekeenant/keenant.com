@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
   workflow_dispatch: {}
 
 permissions:
@@ -28,7 +29,7 @@ jobs:
 
       - name: Build site
         env:
-          BASE_PATH: "/keenant.com/"
+          BASE_PATH: "/"
         run: npm run build
 
       - name: Upload Pages artifact
