@@ -1,0 +1,98 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import TagButton from "../components/TagButton.astro";
+import { authorName } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+  slug?: string;
+}
+
+const { title, description, date, tags, slug } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`${import.meta.env.SITE}/articles/${slug}`}
+  type="article"
+>
+  <article class="prose prose-lg dark:prose-invert max-w-none">
+    <header class="mb-8 not-prose">
+      <h1 class="text-4xl font-bold mb-4">{title}</h1>
+      <div
+        class="flex flex-wrap items-center gap-x-4 gap-y-0 text-gray-600 dark:text-gray-400 text-sm"
+      >
+        <div class="flex items-center gap-x-4 gap-y-0 flex-wrap">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          <span class="text-sm">•</span>
+          <a href="/about" class="text-sm font-medium hover:underline">{authorName}</a>
+          <span class="text-sm">•</span>
+
+          <!-- Share button (copies canonical article URL without query/hash) -->
+          <button
+            type="button"
+            class="share-button text-gray-600 dark:text-gray-400"
+            data-slug={slug}
+            aria-label="Copy article link"
+          >
+            <!-- clearer "share" / external-link icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+              class="share-icon"
+            >
+              <path
+                d="M14 3h7v7"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"></path>
+              <path
+                d="M10 14L21 3"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"></path>
+              <rect
+                x="3"
+                y="7"
+                width="11"
+                height="13"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"></rect>
+            </svg>
+            <span class="share-label">Share</span>
+          </button>
+          {tags && tags.length > 0 && <span class="text-sm">•</span>}
+          {
+            tags && tags.length > 0 && (
+              <div class="flex gap-2 flex-wrap">
+                {tags.map((tag) => (
+                  <TagButton tag={tag} />
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </header>
+    <slot />
+  </article>
+</BaseLayout>

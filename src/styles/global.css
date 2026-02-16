@@ -1,0 +1,189 @@
+/* Global prose + UI utilities (moved from BaseLayout.astro <style is:global>) */
+
+/* Code block styling */
+.prose pre {
+  @apply rounded-lg p-4 overflow-x-auto my-6;
+}
+
+/* Inline code */
+.prose code {
+  @apply rounded px-1.5 py-0.5 text-sm bg-gray-200 dark:bg-gray-800;
+}
+
+.prose pre code {
+  @apply p-0 bg-transparent;
+}
+
+.prose a {
+  /* Make Markdown links visible and distinct from body text */
+  @apply text-sky-600 dark:text-sky-400 font-medium no-underline hover:underline;
+  /* improve underline rendering on some browsers */
+  text-decoration-skip-ink: auto;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold mt-12 mb-4;
+}
+
+.prose h3 {
+  @apply text-2xl font-bold mt-8 mb-3;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+/* Lists - show bullets and numbers */
+.prose ul {
+  @apply mb-4 ml-6 list-disc;
+}
+
+.prose ol {
+  @apply mb-4 ml-6 list-decimal;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose ul ul {
+  @apply mt-2 list-disc;
+}
+
+.prose ol ol {
+  @apply mt-2 list-decimal;
+}
+
+/* Task lists */
+.prose li:has(input[type="checkbox"]) {
+  @apply list-none;
+}
+
+.prose li input[type="checkbox"] {
+  @apply mr-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-4;
+}
+
+/* Tables */
+.prose table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose thead {
+  @apply bg-gray-200 dark:bg-gray-800;
+}
+
+.prose th {
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2 text-left font-semibold;
+}
+
+.prose td {
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+}
+
+.prose tbody tr:nth-child(even) {
+  @apply bg-gray-50 dark:bg-gray-900;
+}
+
+.prose tbody tr:hover {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+/* Details/Summary (collapsible sections) */
+.prose details {
+  @apply my-6 border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-950;
+}
+
+.prose summary {
+  @apply cursor-pointer px-4 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors font-semibold select-none;
+}
+
+.prose summary::marker {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+.prose details[open] summary {
+  @apply border-b border-gray-300 dark:border-gray-700;
+}
+
+.prose details > p,
+.prose details > ul,
+.prose details > ol {
+  @apply px-4 py-3 my-0;
+}
+
+.prose details > p:first-of-type {
+  @apply pt-4;
+}
+
+.prose details > p:last-of-type,
+.prose details > ul:last-of-type,
+.prose details > ol:last-of-type {
+  @apply pb-4;
+}
+
+.prose details > pre {
+  @apply mx-4 my-4 rounded-lg;
+}
+
+.prose details > pre:last-child {
+  @apply mb-4;
+}
+
+/* Horizontal rules */
+.prose hr {
+  @apply my-8 border-gray-300 dark:border-gray-700;
+}
+
+/* Share button (distinct from tag style) */
+/* Make share button visually consistent with tags (same size/weight) */
+.share-button {
+  @apply inline-flex items-center gap-2 px-2 py-1 rounded text-xs border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 transition-colors;
+  font-weight: 500;
+}
+
+.share-button:hover {
+  @apply bg-gray-50 dark:bg-gray-800;
+}
+
+/* Ensure inline SVG for the share button is visible and sized consistently */
+.share-button .share-icon {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Accessibility helpers */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0.5rem;
+  z-index: 60;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.9);
+  outline-offset: 3px;
+}
+
+/* Search overlay - active result highlighting */
+.search-result--active {
+  @apply bg-gray-50 dark:bg-gray-800;
+}
+.search-result--active a {
+  @apply outline-none;
+}

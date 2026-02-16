@@ -1,2 +1,3 @@
-# [keenant.com](https://keenant.com)
+# keenant.com
+
 My personal website.

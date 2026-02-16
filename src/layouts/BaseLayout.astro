@@ -1,0 +1,210 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: string;
+}
+
+const { title, description, canonical, image, type } = Astro.props;
+
+// Resolve page title: prefer explicit prop, then markdown frontmatter, otherwise site name
+const resolvedTitle =
+  title || (Astro.props as any)?.frontmatter?.title || "keenant.com";
+
+// current year used in footer
+const currentYear = new Date().getFullYear();
+
+// import global stylesheet (moved from inline <style is:global>)
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || "Personal site"} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonical || (import.meta.env.SITE || 'https://keenant.com')} />
+    <meta property="og:title" content={resolvedTitle} />
+    <meta property="og:description" content={description || "Personal site"} />
+    <meta property="og:type" content={type || ((Astro.props as any)?.frontmatter?.date ? 'article' : 'website')} />
+    <meta property="og:url" content={canonical || (import.meta.env.SITE || 'https://keenant.com')} />
+    <meta property="og:image" content={image || '/favicon-32x32.png'} />
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:site" content="@your-twitter" />
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: resolvedTitle,
+        url: import.meta.env.SITE || 'https://keenant.com',
+      })}
+    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      {resolvedTitle}{resolvedTitle !== "keenant.com" ? ` — keenant.com` : ""}
+    </title>
+    <script is:inline>
+      // Initialize theme before page renders to prevent flash
+      const theme = localStorage.getItem("theme") || "dark";
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen transition-colors"
+  >
+    <a
+      href="#content"
+      class="skip-link sr-only focus:not-sr-only focus:translate-y-0 focus:mt-2 focus:absolute focus:left-4 focus:top-4 bg-white dark:bg-gray-900 px-3 py-2 rounded text-sm border border-gray-200 dark:border-gray-800"
+      >Skip to content</a
+    >
+
+    <nav class="border-b border-gray-200 dark:border-gray-800">
+      <div
+        class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <a
+          href="/"
+          class="text-xl font-bold hover:text-gray-600 dark:hover:text-gray-400"
+        >
+          keenant.com
+        </a>
+        <div class="flex items-center gap-4">
+          <a href="/about" class="hover:text-gray-600 dark:hover:text-gray-400">
+            About Me
+          </a>
+          <button
+            id="search-toggle"
+            aria-expanded="false"
+            class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700"
+            aria-label="Toggle search"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <button
+            id="theme-toggle"
+            class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700"
+            aria-label="Toggle theme"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div
+      id="search-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search articles"
+      aria-hidden="true"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 items-start justify-center pt-20"
+      style="display: none;"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-full max-w-2xl mx-4"
+      >
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <input
+            type="text"
+            id="global-search-input"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-controls="search-results-list"
+            aria-expanded="false"
+            placeholder="Search articles... (use #tag for tags)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-black text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-600"
+            autocomplete="off"
+          />
+          <div
+            id="global-search-results"
+            role="status"
+            aria-live="polite"
+            class="mt-2 text-sm text-gray-600 dark:text-gray-400"
+          >
+          </div>
+        </div>
+        <div
+          id="search-results-list"
+          role="listbox"
+          aria-label="Search results"
+          class="max-h-96 overflow-y-auto"
+        >
+          <!-- Results will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <main id="content" class="max-w-4xl mx-auto px-4 py-8">
+      <!-- Default prose wrapper so Markdown pages (about, etc.) are styled like articles -->
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <slot />
+      </div>
+    </main>
+
+    <footer
+      class="site-footer border-t border-gray-200 dark:border-gray-800 mt-12"
+    >
+      <div
+        class="max-w-4xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 dark:text-gray-400"
+      >
+        <div>© {currentYear} Keenan Thompson. All rights reserved.</div>
+        <div class="flex gap-4 mt-3 md:mt-0">
+          <a href="/" class="hover:text-gray-900 dark:hover:text-gray-100"
+            >Home</a
+          >
+          <a href="/about" class="hover:text-gray-900 dark:hover:text-gray-100"
+            >About Me</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/scripts/site.ts" is:inline defer></script>
+  </body>
+</html>

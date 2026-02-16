@@ -1,0 +1,46 @@
+{
+  "files.exclude": {
+    "**/dist": true,
+    "dist": true,
+    "**/node_modules": true,
+    "node_modules": true,
+    "**/.git": true,
+    ".git": true,
+    "**/.astro": true,
+    ".astro": true,
+    "**/.cache": true,
+    ".cache": true,
+    "**/coverage": true,
+    "coverage": true,
+    "**/.parcel-cache": true,
+    ".parcel-cache": true,
+    "**/.turbo": true,
+    ".turbo": true
+  },
+  "search.exclude": {
+    "**/dist": true,
+    "dist": true,
+    "**/node_modules": true,
+    "node_modules": true,
+    "**/.git": true,
+    ".git": true,
+    "**/.astro": true,
+    ".astro": true,
+    "**/coverage": true,
+    "coverage": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/**": true,
+    "**/dist/**": true,
+    "**/.astro/**": true
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "plaintext": "html"
+  },
+  "editor.formatOnSave": true
+}
