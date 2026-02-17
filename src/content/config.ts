@@ -7,6 +7,7 @@ const articles = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     draft: z.boolean().optional(),
+    unlisted: z.boolean().optional(),
     tags: z
       .array(
         z.string().refine((tag) => !tag.includes(" "), {

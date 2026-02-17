@@ -138,6 +138,20 @@
   @apply my-8 border-gray-300 dark:border-gray-700;
 }
 
+/* Chart containers - add separation from text */
+.prose div[id$="-chart"] {
+  @apply my-8;
+}
+
+/* Figure and figcaption styling */
+.prose figure {
+  @apply my-8;
+}
+
+.prose figcaption {
+  @apply text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic;
+}
+
 /* Share button (distinct from tag style) */
 /* Make share button visually consistent with tags (same size/weight) */
 .share-button {

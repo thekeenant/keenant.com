@@ -19,7 +19,7 @@ export async function GET() {
   ];
 
   for (const post of articles) {
-    if (post.data.draft) continue;
+    if (post.data.draft || post.data.unlisted) continue;
     const url = `${base}/articles/${post.slug}/`;
     pages.push({
       url,

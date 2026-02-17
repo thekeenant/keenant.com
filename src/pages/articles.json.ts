@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import { authorName } from "../data/site";
+import { authorName } from "@lib/site";
 
 export const prerender = true;
 
@@ -7,7 +7,7 @@ export async function GET() {
   const articles = await getCollection("articles");
 
   const articlesData = articles
-    .filter((article) => !article.data.draft)
+    .filter((article) => !article.data.draft && !article.data.unlisted)
     .map((article) => ({
       slug: article.slug,
       title: article.data.title,

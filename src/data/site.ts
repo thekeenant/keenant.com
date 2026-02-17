@@ -1,1 +1,1 @@
-export const authorName = "Keenan Thompson";
+export * from "../lib/site";
