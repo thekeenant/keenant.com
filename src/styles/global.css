@@ -46,8 +46,75 @@
   @apply mb-2;
 }
 
-.prose ul ul {
-  @apply mt-2 list-disc;
+@media print {
+  /* Reset background and text colors for print */
+  body {
+    @apply bg-white text-black;
+  }
+
+  /* Hide navigation, footer, and interactive elements */
+  nav,
+  footer,
+  button,
+  .share-button,
+  .skip-link,
+  #search-toggle {
+    display: none !important;
+  }
+
+  /* Expand content to full width */
+  .prose {
+    max-width: none !important;
+    font-size: 12pt; /* Standard print font size */
+  }
+
+  /* Improve link visibility */
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
+
+  /* Ensure headings are black */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: black !important;
+  }
+
+  /* Fix for gradient text (like StatCard) becoming invisible */
+  .text-transparent,
+  [class*="text-transparent"] {
+    color: black !important;
+    -webkit-text-fill-color: black !important;
+    background: none !important;
+  }
+
+  /* Avoid breaking elements across pages */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  figure {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  p,
+  ul,
+  ol {
+    page-break-inside: auto;
+  }
+
+  article {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
 }
 
 .prose ol ol {
