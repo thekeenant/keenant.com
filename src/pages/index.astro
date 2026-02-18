@@ -6,7 +6,10 @@ import TagButton from "../components/TagButton.astro";
 
 const allArticles = await getCollection("articles");
 const sortedArticles = allArticles
-  .filter((article: CollectionEntry<"articles">) => !article.data.draft && !article.data.unlisted)
+  .filter(
+    (article: CollectionEntry<"articles">) =>
+      !article.data.draft && !article.data.unlisted,
+  )
   .sort(
     (a: CollectionEntry<"articles">, b: CollectionEntry<"articles">) =>
       b.data.date.valueOf() - a.data.date.valueOf(),
@@ -50,7 +53,7 @@ const sortedArticles = allArticles
             <p class="text-gray-600 dark:text-gray-400 mb-2">
               {article.data.description}
             </p>
-            <div class="flex flex-wrap items-center gap-x-4 gap-y-0 text-sm text-gray-500 dark:text-gray-500">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-500">
               <time datetime={article.data.date.toISOString()}>
                 {new Date(article.data.date).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -58,13 +61,11 @@ const sortedArticles = allArticles
                   day: "numeric",
                 })}
               </time>
-              <span class="text-sm">•</span>
               <a href="/about" class="text-sm font-medium hover:underline">
                 Keenan Thompson
               </a>
               {article.data.tags && article.data.tags.length > 0 ? (
                 <>
-                  <span class="text-sm">•</span>
                   <div class="flex gap-2 flex-wrap">
                     {article.data.tags.map((tag: string) => (
                       <TagButton tag={tag} />
