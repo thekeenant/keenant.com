@@ -274,7 +274,7 @@ The chart below shows active user and page view trends from February 2023 to Feb
           },
         };
 
-        await charts.render('#mg-chart', '/articles/madgrades-transparency-report/users.csv', config);
+        await charts.render('#mg-chart', '/articles/madgrades-transparency-report-2026/users.csv', config);
       } catch (err) { console.error('Failed to render chart', err); }
     };
 
@@ -380,7 +380,7 @@ The chart below compares monthly revenue against costs over the last two years, 
           },
         };
 
-        await charts.render('#monetization-chart', '/articles/madgrades-transparency-report/monetization.csv', config);
+        await charts.render('#monetization-chart', '/articles/madgrades-transparency-report-2026/monetization.csv', config);
       } catch (err) { console.error('Failed to render monetization chart', err); }
     };
     if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', run); } else { run(); }
