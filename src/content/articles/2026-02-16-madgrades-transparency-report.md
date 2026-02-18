@@ -174,9 +174,9 @@ The chart below shows active user and page view trends from February 2023 to Feb
               ],
 
               series: [
-                { name: "30 days", type: "line", data: data.series30d, smooth: true, areaStyle: { opacity: 0.12 }, showSymbol: false },
-                { name: "7 days", type: "line", data: data.series7d, smooth: false, showSymbol: false, lineStyle: { width: 2 } },
-                { name: "1 day", type: "line", data: data.series1d, smooth: false, showSymbol: false, lineStyle: { width: 1, type: "solid" } },
+                { name: "30 day active users", type: "line", data: data.series30d, smooth: true, areaStyle: { opacity: 0.12 }, showSymbol: false },
+                { name: "7 day active users", type: "line", data: data.series7d, smooth: false, showSymbol: false, lineStyle: { width: 2 } },
+                { name: "1 day active users", type: "line", data: data.series1d, smooth: false, showSymbol: false, lineStyle: { width: 1, type: "solid" } },
                 { name: "Page views", type: "line", data: data.views, yAxisIndex: 1, showSymbol: false, lineStyle: { width: 2, type: "solid", color: "rgba(139,92,246,0.45)" } },
               ],
             };
