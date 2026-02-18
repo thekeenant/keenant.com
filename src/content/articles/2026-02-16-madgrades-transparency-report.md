@@ -9,134 +9,49 @@ unlisted: true
 
 ## Foreword
 
-It feels a little ridiculous to release a formal "Transparency Report" for what is, essentially, a dusty student project that runs on auto-pilot. I built Madgrades back in 2018 expecting it to be a one-semester wonder for my friends. I figured I'd graduate, the server would eventually crash, and that would be that.
+It feels little silly for me to release a formal "Transparency Report" for what is, essentially, a dusty student project that runs on auto-pilot. I built Madgrades back in 2018 expecting it to be a one-semester wonder for my friends. I figured I'd graduate, the server would eventually crash, and that would be that. But I was wrong!
 
-But the numbers don't lie. Seven years later, this little tool has become a weirdly integral part of campus life. It's processed over 30 million searches and survived long enough to help nearly 60%[^1] of the current student body register for classes. Even though I've long since moved on to my career at Google, I still find myself logging in every semester to push updates (sorry they're late!) because seeing thousands of students rely on it is incredibly motivating.
+It took only a few semesters for this little tool to become a weirdly integral part of campus life. It's been 7 years now and Madgrades has processed over 30 million searches and survived long enough to help nearly 60%[^1] of the current student body register for classes every semester. Although I’ve moved on to my career and other life events, I revisit the project every semester to push a few buttons to deploy the new grades (apologies for the delays!). It’s genuinely rewarding to see thousands of students still relying on this project.
 
-So I'm writing this down for posterity, and in the hope that it might help someone else trying to build something similar. But mostly, I'm sharing it out of the same spirit of openness that drives the project itself: public data is only truly public if it's accessible.
+I'm writing this one-off report for those curious about the project, and to help students building tools of their own. It states the facts: what it is, how it works, what it costs, and why it's still running. All in the spirit of openness that defines Madgrades.
 
 — Keenan Thompson
 
+---
+
 ## Introduction to Madgrades
 
-[Madgrades.com](https://madgrades.com) is an independent, open-source site that turns UW-Madison Registrar PDF grade reports into searchable, visual breakdowns. Users can look up courses, see grade distributions, instructor trends, semester comparisons, and subject-level rankings.
+[Madgrades.com](https://madgrades.com) extracts raw PDF grade reports published by the UW-Madison Registrar and transforms them into GPA charts and exploration tools. It helps answer questions like "Is this class historically difficult?" or "How does this professor grade compared to others?"
 
-It’s not affiliated with UW-Madison in any way. This tool makes grade reports easier to use when planning schedules, but it is emphasized that grades are only one factor among many.
+It is an independent, open-source tool and is not affiliated with the university.
+
+<figure>
+  <div class="aspect-video">
+    <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/3MYzGalw7ck" title="Madgrades Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <figcaption>A quick demo of Madgrades in action.</figcaption>
+</figure>
 
 **Core features include:**
 
 - Search by course code, name, subject, instructor, or keyword
-- Percentage breakdowns of grades (A's, B's, etc.) with visual charts
-- Instructor and course GPA trends over semesters
-- Comparisons between cumulative distributions, specific instructors, or individual semesters
-- Explore pages ranking subjects, courses, or instructors by average GPA
-- Course comparison tool for side-by-side views
+- Percentage breakdowns of grades (A's, B's, etc.)
+- Instructor and course GPA trends
+- Comparisons between instructors or semesters
+- Explore pages for aggregating course, subject, and instructor data
 - Dark mode support
 
-## Why Make GPA Data Accessible?
+## Why Make This Data Accessible?
 
-The core philosophy behind Madgrades is that public data shouldn't just be technically available. It should be functionally accessible. While the university releases these reports as PDFs, they are buried in archives and difficult to parse at a glance. By visualizing this data, we transform raw numbers into actionable insights.
+Public data shouldn't just be *available*; it should be *usable*. The university publishes grade reports, but they bury them in multiple 400+ page PDF archives every semester that are impossible to make sense of manually. Madgrades just puts that data in a format you can actually read.
 
-A common criticism of grade transparency is that it encourages "grade shopping," or hunting for courses solely based on high GPAs. While this undoubtedly happens, observation of student behavior over the last seven years of operation suggests a more nuanced reality. Most students use this data not to avoid work, but to manage risk.
+People sometimes say grade transparency encourages "grade shopping." Sure, that happens. Some students just want the easiest "A". But realistically, students can only pick easy electives a handful of times before they have to face the rigorous, mandatory courses required for their major. And over the last seven years, it has become clear that students use the data for more constructive reasons. They balance a heavy semester by pairing a killer prerequisite with a lighter elective. They check if a specific section or instructor has weirdly low grades compared to others. Or they just want to avoid being blindsided by a course with a high failure rate. For students it's about having information. You wouldn't buy a car without checking the history report. Likewise, you might not want to register for a class without having checked the historic grade distributions.
 
-They use it to balance a heavy semester by pairing a notoriously rigorous prerequisite with a lighter elective. They use it to identify grading disparities between sections that might affect their scholarship eligibility. Or they use it simply to avoid being blindsided by a course with an unexpectedly high failure rate. In this context, transparency doesn't undermine academic rigor; it enables students to make informed decisions about their own education.
+Beyond the benefits it provides directly to students, open and accessible data serves as a tool for institutional accountability. When five professors teach the same Calculus course and one consistently has a 40% fail rate while the others stay at 10%, that isn't a "rigor" issue, it is likely a teaching failure that is actively harming students and the university. Madgrades shines a light on these anomalies which help to create pressure for the university to investigate why certain sections are failing to deliver.
 
-Grade inflation is also acknowledged as a complex, systemic issue, and the intent is certainly not to exacerbate it. However, silence and obscurity are not solutions. By bringing these trends into the light, the goal is to provide a clear picture of the current reality, allowing for honest comparisons and informed choices, rather than leaving students to rely on rumor or luck.
+The inverse is also true: if the data reveals a course has become an "Easy A" where students are flocking to avoid any real challenge, it provides the university with the evidence needed to reconsider that curriculum and restore academic standards. Transparency does not take sides. It simply reveals where the system is working and where it is broken, allowing both students and administrators to demand a more consistent, high-quality education.
 
-## History and Development
-
-Madgrades launched in February 2018. The core user-facing behavior has stayed mostly the same since launch: search, grade breakdowns, instructor/course trends, comparisons, and explore/ranking views.
-
-Updates since then have been incremental, consisting mostly of UX polish, reliability fixes, modern tooling, and a couple of new additions from community contributions.
-
-**Key Milestones:**
-
-<div class="relative py-4 pl-8 space-y-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-200 dark:before:bg-zinc-700 not-prose">
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2018</div>
-    <div class="text-gray-900 dark:text-gray-100">Initial launch.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Jan 2019</div>
-    <div class="text-gray-900 dark:text-gray-100">Chart UX improvements for better readability.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Sep 2020</div>
-    <div class="text-gray-900 dark:text-gray-100">AdSense added.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Nov 2022</div>
-    <div class="text-gray-900 dark:text-gray-100">Migration to GA4</span>.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2023</div>
-    <div class="text-gray-900 dark:text-gray-100">Full Dockerization and dependency modernization.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2025</div>
-    <div class="text-gray-900 dark:text-gray-100">Began promoting community-built student projects on-site.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">May 2025</div>
-    <div class="text-gray-900 dark:text-gray-100">Course comparison feature added by contributor.</div>
-  </div>
-  <div class="relative">
-    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
-    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2026</div>
-    <div class="text-gray-900 dark:text-gray-100">Dark mode added, along with modernization.</div>
-  </div>
-</div>
-
-## Data Sourcing and Processing
-
-The data powering Madgrades comes directly from publicly available UW-Madison Registrar publications: the [Course Grade-Distribution Reports](https://archive.is/https://registrar.wisc.edu/grade-reports) and the [Departmental Instructional Reports (DIR)](https://archive.is/https://registrar.wisc.edu/curricular-build/#dir).
-
-The Grade-Distribution Reports provide the core data, containing section-level final grades dating back to approximately 2006. The DIR data is used supplementally, but with caution. The university notes that DIR data is intended for internal administrative use and involves specific terminologies that can be easily misinterpreted without full context. Madgrades includes this data to provide a more complete picture, but users should read the full [usage disclaimer](https://github.com/Madgrades/madgrades-data) and interpret it with care.
-
-**How it Works**
-
-The process begins by downloading these PDFs from the Registrar's website and archiving them in the [madgrades-data](https://github.com/Madgrades/madgrades-data) repository. From there, a GitHub Action triggers the [madgrades-extractor](https://github.com/Madgrades/madgrades-extractor), a tool designed to parse the raw PDF tables and convert them into structured JSON and CSV formats. This processed data is then loaded into the backend database that powers the API, which the frontend website queries to render charts and visualizations.
-
-**Known Limitations**
-
-Because the data extraction relies on parsing PDF tables, occasional errors can occur where rows or columns are misread. Additionally, updates to the site sometimes lag behind the official university release schedule. Users are always encouraged to verify critical information against the official Registrar reports directly. If you spot an error, please report it via [GitHub](https://github.com/Madgrades/madgrades.com/issues) or the feedback form on the site.
-
-## User Privacy and Data Practices
-
-The privacy story for Madgrades is intentionally boring.
-
-Madgrades itself collects no personal data from users. We do not require accounts, logins, emails, or identifiers. Regular browsing is anonymous from the Madgrades backend.
-
-The site does use third-party services:
-
-- Google Analytics GA4 for aggregated usage stats (IP anonymization enabled; no personally identifiable data collected by Madgrades).
-- Google AdSense for monetization; AdSense may track for personalized ads via cookies, IP addresses, or device info. This is handled by Google, not Madgrades.
-
-No other trackers. No data sold or shared by Madgrades.
-
-For developers/contributors who use the backend (e.g., API keys), only email addresses are securely stored. No passwords or other personal data are kept.
-
-## Operational Transparency
-
-Madgrades is built on a modern stack comprising **React 19** and **Vite** for the frontend, with a **Ruby on Rails** backend handling API requests. Data extraction from PDF reports is performed using custom **Java-based tools**. Everything is containerized with **Docker** for consistent local development.
-
-The project is broken down into four key repositories:
-
-- [`madgrades.com`](https://github.com/Madgrades/madgrades.com) (Frontend)
-- [`api.madgrades.com`](https://github.com/Madgrades/api.madgrades.com) (Backend)
-- [`madgrades-data`](https://github.com/Madgrades/madgrades-data) (PDF Archive)
-- [`madgrades-extractor`](https://github.com/Madgrades/madgrades-extractor) (Parser)
-
-The project is small, primarily maintained by Keenan Thompson, with occasional community contributions merged via pull requests. It has 6 total contributors and 56 GitHub stars. Hosting costs are minimal (domain + server) and have been fully offset by ad revenue since 2020. UptimeRobot is used for monitoring, and the current API revision is always visible in the site footer.
-
-## User Metrics and Impact
+## Impact
 
 Madgrades reaches a significant portion of the UW–Madison student body.
 
@@ -154,7 +69,7 @@ Madgrades reaches a significant portion of the UW–Madison student body.
       30k
     </span>
     <span class="text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
-      Peak MAU
+      Monthly Users
     </span>
   </div>
   <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-zinc-800/50 rounded-lg border border-gray-200 dark:border-zinc-700/50">
@@ -170,7 +85,7 @@ Madgrades reaches a significant portion of the UW–Madison student body.
       150k
     </span>
     <span class="text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
-      Peak Daily Views
+      Daily Views (Peak)
     </span>
   </div>
 </div>
@@ -179,17 +94,11 @@ Madgrades reaches a significant portion of the UW–Madison student body.
 
 The site has processed **over 30 million** cumulative course searches since launch. During peak periods, we see approximately **30,000 monthly active users** and **6,300 daily active users**, generating over **150,000 daily page views**. This traffic corresponds to roughly **58%**[^1] of the total student body.
 
-**Usage & Seasonality**
-
-Traffic correlates almost perfectly with the academic calendar. We see two predictable massive spikes per term: one during the course registration window and another during the first month of the semester. Activity settles into a stable baseline during the summer break. Revenue and engagement spikes align directly with these registration periods.
-
-**Audience & Integrations**
+**Audience & Usage**
 
 The primary audience is students planning schedules and choosing sections. However, the open API has enabled an ecosystem of community-built tools, including Chrome extensions and course planners. We also see occasional usage from researchers and data analysts interested in the aggregated grade data.
 
-**Discovery & Community**
-
-Growth has been almost entirely organic through word-of-mouth, campus sharing, and mentions on the [UW-Madison subreddit](https://www.reddit.com/r/UWMadison). As an open-source project, we receive contributions and bug reports via GitHub, and in 2025, we began highlighting other student projects directly on the site to support the wider developer community.
+Madgrades.com traffic correlates perfectly with the academic calendar. We see two predictable massive spikes per term: one during the course registration window and another smaller spike during the first month of the semester. Activity settles during the summer break.
 
 The chart below shows active user and page view trends from February 2023 to February 2026.
 
@@ -282,19 +191,111 @@ The chart below shows active user and page view trends from February 2023 to Feb
   })();
 </script>
 
+**Discovery & Community**
+
+Growth has been entirely organic through word-of-mouth, campus sharing, and mentions on the [UW-Madison subreddit](https://www.reddit.com/r/UWMadison). 
+
+As an open-source project, we receive contributions and bug reports via Jotform and GitHub. In 2025, we began highlighting other student projects directly on the site to support the wider developer community.
+
+## Data Sourcing and Processing
+
+The data powering Madgrades comes directly from publicly available UW-Madison Registrar publications: the [Course Grade-Distribution Reports](https://archive.is/https://registrar.wisc.edu/grade-reports) and the [Departmental Instructional Reports (DIR)](https://archive.is/https://registrar.wisc.edu/curricular-build/#dir).
+
+The Grade-Distribution Reports provide the core dataset, with section-level final grades dating back to approximately 2006. The DIR data supplements this by linking sections to schedules, instructors, and locations. By cross-referencing these two sources, we can associate specific grade distributions with the corresponding instructor and course schedule.
+
+Note that the DIR data is intended for internal administrative use and involves specific terminologies that can be easily misinterpreted without full context. Madgrades includes this data to provide a more complete picture, but users should read the full [usage disclaimer](https://github.com/Madgrades/madgrades-data) and interpret it with care.
+
+**How it Works**
+
+The process begins by downloading these PDFs from the Registrar's website and archiving them in the [madgrades-data](https://github.com/Madgrades/madgrades-data) repository. From there, a GitHub Action triggers the [madgrades-extractor](https://github.com/Madgrades/madgrades-extractor), a tool designed to parse the raw PDF tables and convert them into structured JSON and CSV formats. This processed data is then loaded into the backend database that powers the API, which the frontend website queries to render charts and visualizations.
+
+**Known Limitations**
+
+Because the data extraction relies on parsing PDF tables, occasional errors can occur where rows or columns are misread, requiring manual updates to the extractor logic. Additionally, updates to the site sometimes lag behind the official university release schedule, as there is no mechanism to automatically pull the data. 
+
+Users are also always encouraged to verify critical information against the official Registrar reports directly. If you spot an error, please report it via [GitHub](https://github.com/Madgrades/madgrades.com/issues) or the feedback form on the site.
+
+## User Privacy and Data Practices
+
+The privacy story for Madgrades is intentionally boring.
+
+Madgrades itself collects no personal data from users. We do not require accounts, logins, emails, or identifiers. Regular browsing is anonymous from the Madgrades backend.
+
+The site does use third-party services:
+
+- Google Analytics GA4 for aggregated usage stats.
+- Google AdSense for monetization; AdSense may track for personalized ads via cookies or other
+
+For developers/contributors who use the backend, only email addresses are securely stored.
+
+## How It's Built
+
+Madgrades is built with **React 19** and **Vite** for the frontend, and **Ruby on Rails 8** on the backend handling API requests. Data extraction from PDF reports is performed using custom software built with **Java** that has hardly changed since 2018. Everything is containerized with **Docker** for consistent local development.
+
+The project is broken down into four key repositories all on GitHub:
+
+- [`madgrades.com`](https://github.com/Madgrades/madgrades.com) (Frontend)
+- [`api.madgrades.com`](https://github.com/Madgrades/api.madgrades.com) (Backend)
+- [`madgrades-data`](https://github.com/Madgrades/madgrades-data) (PDF Archive)
+- [`madgrades-extractor`](https://github.com/Madgrades/madgrades-extractor) (Parser)
+
+The repositories have had 6 total contributors and 56 GitHub stars.
+
+
+## History and Development
+
+Madgrades launched in February 2018. The core user-facing behavior has stayed mostly the same since launch, with updates focusing on UX polish, reliability fixes, modern tooling, and a couple of new additions from community contributions.
+
+**Milestones**
+
+<div class="relative py-4 pl-8 space-y-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-200 dark:before:bg-zinc-700 not-prose">
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2018</div>
+    <div class="text-gray-900 dark:text-gray-100">Initial launch.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Jan 2019</div>
+    <div class="text-gray-900 dark:text-gray-100">Chart UX improvements for better readability.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Sep 2020</div>
+    <div class="text-gray-900 dark:text-gray-100">AdSense added.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Nov 2022</div>
+    <div class="text-gray-900 dark:text-gray-100">Migration to GA4</span>.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2023</div>
+    <div class="text-gray-900 dark:text-gray-100">Full Dockerization and dependency modernization.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2025</div>
+    <div class="text-gray-900 dark:text-gray-100">Began promoting community-built student projects on-site.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">May 2025</div>
+    <div class="text-gray-900 dark:text-gray-100">Course comparison feature added by contributor.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2026</div>
+    <div class="text-gray-900 dark:text-gray-100">Dark mode added, along with more modernization.</div>
+  </div>
+</div>
+
 ## Financial Transparency
 
-The project started self-funded but shifted to a sustainable model. A single non-intrusive ad slot was added in September 2020 simply to cover server costs. Since then, AdSense revenue has fully offset all operational expenses.
+The project started as self-funded, but shifted to a sustainable, independent model. A single non-intrusive ad slot was added in September 2020 simply to cover server costs. Since then, AdSense revenue has fully offset all operational expenses.
 
-### Operational Costs
-
-| Item             | Monthly Cost  |
-| :--------------- | :------------ |
-| Backend Server   | ~$17          |
-| Domain Name      | ~$1           |
-| Frontend Hosting | Free (Static) |
-
-### Financial Performance (Feb 2024 – Feb 2026)
+### Performance (Feb 2024 – Feb 2026)
 
 | Category            | Total (2 Years) |
 | :------------------ | :-------------- |
@@ -391,159 +392,35 @@ The chart below compares monthly revenue against costs over the last two years, 
 
 A common question is whether Madgrades will expand to other universities. While the idea of a universal grade transparency platform is compelling, there are no plans to support other schools.
 
-I did briefly investigate other universities early on, but few publish their grade distributions as openly as UW-Madison does. Most schools require [Freedom of Information Act (FOIA)](https://www.foia.gov/about.html) requests to release this data. These requests often incur significant fees—charging hourly rates for the administrative work to compile datasets—which can easily run into the thousands of dollars per school.
+I did briefly investigate other universities early on, but few publish their grade distributions as openly as UW-Madison does. Most schools require [Freedom of Information Act (FOIA)](https://www.foia.gov/about.html) requests to release this data. These requests often incur significant fees, charging hourly rates for the administrative work to compile datasets, which can easily run into the thousands of dollars per school.
 
 Beyond the cost, there is the simple constraint of time and resources. Maintaining one site as a side project is manageable; running a multi-campus enterprise is a full-time job. While someone else could certainly turn this concept into a large-scale platform, I don't have the desire to pursue that path. Madgrades works because it is small, focused, and low-maintenance.
 
-Other developers have attempted this with varying degrees of success. Austin G. Walters documented his experience [FOIA requesting over 100 universities](https://archive.is/https://austingwalters.com/foia-requesting-100-universities/), noting that while some schools were cooperative, others demanded exorbitant fees or provided data in comical formats (like physical CDs). More recently, [Grades LLC](https://archive.is/https://grades.llc/history) (originally [MSU Grades](https://msugrades.com)) has been systematically sending requests across the Midwest, aiming to build a broader platform. Their efforts highlight just how much dedicated legal and administrative legwork is required to scale this beyond a single transparent university. Even if the data is successfully acquired, every university provides it in a different format—some as CSVs, some as PDFs, and others as messy spreadsheets with varying schemas. Reconciling all these disparate sources into a single, unified database would be technically challenging and prohibitively expensive for a solo developer.
+Other developers have attempted this with varying degrees of success. Austin G. Walters documented his experience [FOIA requesting over 100 universities](https://archive.is/https://austingwalters.com/foia-requesting-100-universities/), noting that while some schools were cooperative, others demanded exorbitant fees or provided data in comical formats (physical CDs!). More recently, [Grades LLC](https://archive.is/https://grades.llc/history) (related: [MSU Grades](https://msugrades.com)) has been systematically sending requests across the Midwest, aiming to build a broader platform. Their efforts highlight just how much dedicated legal and administrative legwork is required to scale this beyond a single transparent university. Even if the data is successfully acquired, every university provides it in a different format. Reconciling all these disparate sources into a single, unified database would be technically challenging, but not impossible.
 
 ## Challenges and Future Plans
 
-The primary challenge is maintaining data accuracy as the Registrar's PDF report formats change over time. Efforts are also made to minimize the delay between the university's data release and the site update.
-
 The main existential worry for the project is that the underlying data will eventually become unavailable or locked behind a steep cost associated with a FOIA request. If that happens, the website will likely shut down, as the project operates on a small budget and relies entirely on free, public records.
 
-### What's Next?
+### Roadmap
 
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 not-prose">
-  <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-    <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-      <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-      </svg>
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">AI & LLMs</h4>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Leveraging AI to uncover deeper data insights and speed up development.</p>
-    </div>
-  </div>
+In no particular order:
 
-<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-  <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-    <svg
-      className="w-4 h-4"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-      />
-    </svg>
-  </div>
-  <div>
-    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-      Student Insights
-    </h4>
-    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-      Collecting anonymous feedback on how and why the site is used in order to paint a clearer picture about Madgrades.
-    </p>
-  </div>
-</div>
-
-<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-    <svg
-      className="w-4 h-4"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-      />
-    </svg>
-  </div>
-  <div>
-    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-      Research Access
-    </h4>
-    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-      Structuring data for researchers investigating long-term trends.
-    </p>
-  </div>
-</div>
-
-<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-  <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
-    <svg
-      className="w-4 h-4"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-      />
-    </svg>
-  </div>
-  <div>
-    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-      Open Source
-    </h4>
-    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-      Making the codebase more accessible for student contributors.
-    </p>
-  </div>
-</div>
-<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-  <div className="w-8 h-8 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400">
-    <svg
-      className="w-4 h-4"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-      />
-    </svg>
-  </div>
-  <div>
-    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-      Community
-    </h4>
-    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-      Building ties with organizations and highlighting student tools.
-    </p>
-  </div>
-</div>
-
-  <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
-    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
-      <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
-      </svg>
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">UX Improvements</h4>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Continuing to polish the interface based on student feedback.</p>
-    </div>
-  </div>
-</div>
+- **AI & LLMs**: Using AI to uncover deeper data insights and speed up development.
+- **Student Insights**: Collecting anonymous feedback on how and why the site is used in order to paint a clearer picture about Madgrades.
+- **Research Access**: Structuring data better for researchers.
+- **Open Source**: Making the codebase more accessible for student contributors, especially those wanting to make their first PR.
+- **Community**: Building ties with organizations and highlighting student tools.
+- **UX Improvements**: Continuing to polish the interface based on student feedback.
 
 ## Conclusion
 
-Seven years is a long time in software, especially for a side project built by a student who graduated years ago. What started as a simple curiosity—_can I make this PDF easier to read?_—has quietly become a piece of shared infrastructure for the university community.
+What started as a simple "can I parse this PDF?" question has turned into a piece of shared infrastructure for the UW Madison campus. You don't need VC money, a startup team, or even a marketing budget to build a useful tool with a modest user base. You just need to solve a real problem. Go out there, find a niche problem, and build a solution! With modern AI tools, it's easier than ever.
 
-Madgrades proves that open data doesn't need a startup budget or a business plan to be sustainable; it just needs to be useful. As long as the university continues to publish its records, and as long as students continue to find value in them, this project will remain online (and open source) for anyone to use, study, or improve.
+And as for Madgrades itself? It isn't going anywhere. As long as the university continues to make these records public, and as long as students continue to find value in the data to make informed decisions, I'll ensure the site stays online.
 
 On, Wisconsin!
+
+---
 
 [^1]: Usage penetration is calculated as 30,000 peak Monthly Active Users (MAU) divided by approximately 52,000 total enrolled students. Total enrollment based on [UW-Madison Fall 2025 enrollment data](https://archive.is/https://www.wisc.edu/about/facts/).
