@@ -134,8 +134,6 @@ The project is broken down into four key repositories:
 - [`madgrades-data`](https://github.com/Madgrades/madgrades-data) (PDF Archive)
 - [`madgrades-extractor`](https://github.com/Madgrades/madgrades-extractor) (Parser)
 
-**Maintenance & Hosting**
-
 The project is small, primarily maintained by Keenan Thompson, with occasional community contributions merged via pull requests. It has 6 total contributors and 56 GitHub stars. Hosting costs are minimal (domain + server) and have been fully offset by ad revenue since 2020. UptimeRobot is used for monitoring, and the current API revision is always visible in the site footer.
 
 ## User Metrics and Impact
@@ -403,16 +401,142 @@ Other developers have attempted this with varying degrees of success. Austin G. 
 
 The primary challenge is maintaining data accuracy as the Registrar's PDF report formats change over time. Efforts are also made to minimize the delay between the university's data release and the site update.
 
-The main existential worry for the project is that the underlying data will eventually become unavailable or locked behind a steep cost associated with a FOIA request. If that happens, the website will likely shut down, as the project operates on a shoestring budget and relies entirely on freely accessible public records.
+The main existential worry for the project is that the underlying data will eventually become unavailable or locked behind a steep cost associated with a FOIA request. If that happens, the website will likely shut down, as the project operates on a small budget and relies entirely on free, public records.
 
-Looking ahead, we are exploring ideas such as:
+### What's Next?
 
-- **AI & LLMs**: Leveraging AI to uncover deeper data insights and streamline development. These tools have already proven essential, saving hours of work on the recent modernization and UX improvements.
-- **Student Insights**: Exploring ways to collect anonymous feedback on how and why the site is used, helping to paint a clearer picture of its role at UW-Madison.
-- **Research Accessibility**: Structuring data to better support researchers investigating long-term trends like grade inflation.
-- **Contribution Ease**: Making the codebase more accessible for students who want to contribute their first open-source PR.
-- **Community Engagement**: Building ties with local student organizations and highlighting more student-built tools.
-- **UX Improvements**: Continuing to polish the interface based on student feedback.
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 not-prose">
+  <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+    <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+      <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+      </svg>
+    </div>
+    <div>
+      <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">AI & LLMs</h4>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Leveraging AI to uncover deeper data insights and speed up development.</p>
+    </div>
+  </div>
+
+<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+  <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+    <svg
+      className="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+      />
+    </svg>
+  </div>
+  <div>
+    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      Student Insights
+    </h4>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      Collecting anonymous feedback on how and why the site is used in order to paint a clearer picture about Madgrades.
+    </p>
+  </div>
+</div>
+
+<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+    <svg
+      className="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+      />
+    </svg>
+  </div>
+  <div>
+    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      Research Access
+    </h4>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      Structuring data for researchers investigating long-term trends.
+    </p>
+  </div>
+</div>
+
+<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+  <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+    <svg
+      className="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+      />
+    </svg>
+  </div>
+  <div>
+    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      Open Source
+    </h4>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      Making the codebase more accessible for student contributors.
+    </p>
+  </div>
+</div>
+<div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+  <div className="w-8 h-8 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400">
+    <svg
+      className="w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+      />
+    </svg>
+  </div>
+  <div>
+    <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      Community
+    </h4>
+    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      Building ties with organizations and highlighting student tools.
+    </p>
+  </div>
+</div>
+
+  <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 dark:bg-zinc-800/50 dark:border-zinc-700/50 flex flex-col gap-2">
+    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+      <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+      </svg>
+    </div>
+    <div>
+      <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">UX Improvements</h4>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Continuing to polish the interface based on student feedback.</p>
+    </div>
+  </div>
+</div>
 
 ## Conclusion
 
