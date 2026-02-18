@@ -3,7 +3,7 @@ title: "Madgrades Transparency Report 2026"
 slug: madgrades-transparency-report-2026
 description: "Who built Madgrades, how it works, what it costs, what it earns, and why it's still online."
 date: 2026-02-16
-tags: ["madgrades", "analytics", "transparency", "open-source", "monetization"]
+tags: ["madgrades", "open-source"]
 unlisted: true
 ---
 
@@ -51,31 +51,62 @@ Updates since then have been incremental, consisting mostly of UX polish, reliab
 
 **Key Milestones:**
 
-- **Feb 2018**: Initial launch.
-- **Jan 2019**: Chart UX improvements for better readability.
-- **Sep 2020**: AdSense ad slot added.
-- **Nov 2022**: Migration to GA4 (historical data prior to 2022 was lost).
-- **2023**: Full Dockerization and dependency modernization.
-- **2025**: Began promoting community-built student projects on-site.
-- **May 2025**: Course comparison feature added by contributor.
-- **Feb 2026**: Dark mode added, along with modernization.
+<div class="relative py-4 pl-8 space-y-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-200 dark:before:bg-zinc-700 not-prose">
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2018</div>
+    <div class="text-gray-900 dark:text-gray-100">Initial launch.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Jan 2019</div>
+    <div class="text-gray-900 dark:text-gray-100">Chart UX improvements for better readability.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Sep 2020</div>
+    <div class="text-gray-900 dark:text-gray-100">AdSense added.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Nov 2022</div>
+    <div class="text-gray-900 dark:text-gray-100">Migration to GA4</span>.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2023</div>
+    <div class="text-gray-900 dark:text-gray-100">Full Dockerization and dependency modernization.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">2025</div>
+    <div class="text-gray-900 dark:text-gray-100">Began promoting community-built student projects on-site.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-gray-300 dark:bg-zinc-900 dark:border-zinc-600"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">May 2025</div>
+    <div class="text-gray-900 dark:text-gray-100">Course comparison feature added by contributor.</div>
+  </div>
+  <div class="relative">
+    <div class="absolute -left-[29px] top-1.5 h-4 w-4 rounded-full bg-white border-4 border-indigo-500 dark:bg-zinc-900 dark:border-indigo-400"></div>
+    <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-0.5">Feb 2026</div>
+    <div class="text-gray-900 dark:text-gray-100">Dark mode added, along with modernization.</div>
+  </div>
+</div>
 
 ## Data Sourcing and Processing
 
-All data is taken from public UW-Madison Registrar publications:
+The data powering Madgrades comes directly from publicly available UW-Madison Registrar publications: the [Course Grade-Distribution Reports](https://archive.is/https://registrar.wisc.edu/grade-reports) and the [Departmental Instructional Reports (DIR)](https://archive.is/https://registrar.wisc.edu/curricular-build/#dir).
 
-- [Course Grade-Distribution Reports](https://archive.is/https://registrar.wisc.edu/grade-reports) (PDFs with section-level final grades)
-- Departmental Instructional Reports (DIR), used with care given university notes on internal use
-- Archives going back to \~2006
+The Grade-Distribution Reports provide the core data, containing section-level final grades dating back to approximately 2006. The DIR data is used supplementally, but with caution. The university notes that DIR data is intended for internal administrative use and involves specific terminologies that can be easily misinterpreted without full context. Madgrades includes this data to provide a more complete picture, but users should read the full [usage disclaimer](https://github.com/Madgrades/madgrades-data) and interpret it with care.
 
-**Workflow:**
+**How it Works**
 
-1. PDFs downloaded from [registrar.wisc.edu/grade-reports](https://archive.is/https://registrar.wisc.edu/grade-reports) and archived in [github.com/Madgrades/madgrades-data](https://github.com/Madgrades/madgrades-data).
-2. GitHub Actions run [madgrades-extractor](https://github.com/Madgrades/madgrades-extractor) to parse tables into JSON/CSV.
-3. Data loaded into the backend database that powers [api.madgrades.com](https://api.madgrades.com).
-4. Frontend queries the API to display charts.
+The process begins by downloading these PDFs from the Registrar's website and archiving them in the [madgrades-data](https://github.com/Madgrades/madgrades-data) repository. From there, a GitHub Action triggers the [madgrades-extractor](https://github.com/Madgrades/madgrades-extractor), a tool designed to parse the raw PDF tables and convert them into structured JSON and CSV formats. This processed data is then loaded into the backend database that powers the API, which the frontend website queries to render charts and visualizations.
 
-Known limitations: PDF parsing can occasionally misread tables and updates sometimes lag the official release. Users should verify against the registrar directly. Report issues via [GitHub](https://github.com/Madgrades/madgrades.com/issues) or the JotForm link on the site.
+**Known Limitations**
+
+Because the data extraction relies on parsing PDF tables, occasional errors can occur where rows or columns are misread. Additionally, updates to the site sometimes lag behind the official university release schedule. Users are always encouraged to verify critical information against the official Registrar reports directly. If you spot an error, please report it via [GitHub](https://github.com/Madgrades/madgrades.com/issues) or the feedback form on the site.
 
 ## User Privacy and Data Practices
 
@@ -160,7 +191,7 @@ The primary audience is students planning schedules and choosing sections. Howev
 
 **Discovery & Community**
 
-Growth has been almost entirely organic through word-of-mouth, campus sharing, and mentions on r/UWMadison. As an open-source project, we receive contributions and bug reports via GitHub, and in 2025, we began highlighting other student projects directly on the site to support the wider developer community.
+Growth has been almost entirely organic through word-of-mouth, campus sharing, and mentions on the [UW-Madison subreddit](https://www.reddit.com/r/UWMadison). As an open-source project, we receive contributions and bug reports via GitHub, and in 2025, we began highlighting other student projects directly on the site to support the wider developer community.
 
 The chart below shows active user and page view trends from February 2023 to February 2026.
 
@@ -362,9 +393,11 @@ The chart below compares monthly revenue against costs over the last two years, 
 
 A common question is whether Madgrades will expand to other universities. While the idea of a universal grade transparency platform is compelling, there are no plans to support other schools.
 
-I did briefly investigate other universities early on, but few publish their grade distributions as openly as UW-Madison does. Most schools require Freedom of Information Act (FOIA) requests to release this data. These requests often incur significant fees—charging hourly rates for the administrative work to compile datasets—which can easily run into the thousands of dollars per school.
+I did briefly investigate other universities early on, but few publish their grade distributions as openly as UW-Madison does. Most schools require [Freedom of Information Act (FOIA)](https://www.foia.gov/about.html) requests to release this data. These requests often incur significant fees—charging hourly rates for the administrative work to compile datasets—which can easily run into the thousands of dollars per school.
 
-Beyond the cost, there is the simple constraint of time and resources. Maintaining one site as a side project is manageable; running a multi-campus enterprise is a full-time job. While someone else could certainly turn this concept into a large-scale business, I don't have the desire to pursue that path. Madgrades works because it is small, focused, and low-maintenance.
+Beyond the cost, there is the simple constraint of time and resources. Maintaining one site as a side project is manageable; running a multi-campus enterprise is a full-time job. While someone else could certainly turn this concept into a large-scale platform, I don't have the desire to pursue that path. Madgrades works because it is small, focused, and low-maintenance.
+
+Other developers have attempted this with varying degrees of success. Austin G. Walters documented his experience [FOIA requesting over 100 universities](https://archive.is/https://austingwalters.com/foia-requesting-100-universities/), noting that while some schools were cooperative, others demanded exorbitant fees or provided data in comical formats (like physical CDs). More recently, [Grades LLC](https://archive.is/https://grades.llc/history) (originally [MSU Grades](https://msugrades.com)) has been systematically sending requests across the Midwest, aiming to build a broader platform. Their efforts highlight just how much dedicated legal and administrative legwork is required to scale this beyond a single transparent university. Even if the data is successfully acquired, every university provides it in a different format—some as CSVs, some as PDFs, and others as messy spreadsheets with varying schemas. Reconciling all these disparate sources into a single, unified database would be technically challenging and prohibitively expensive for a solo developer.
 
 ## Challenges and Future Plans
 
@@ -383,8 +416,10 @@ Looking ahead, we are exploring ideas such as:
 
 ## Conclusion
 
-Madgrades is a straightforward tool built on public data to make course selection a little less blind. It’s stayed close to its original form since 2018 while getting small, practical updates over time. Feedback, bug reports, and contributions are welcome through GitHub or the site.
+Seven years is a long time in software, especially for a side project built by a student who graduated years ago. What started as a simple curiosity—_can I make this PDF easier to read?_—has quietly become a piece of shared infrastructure for the university community.
 
-Go Badgers!
+Madgrades proves that open data doesn't need a startup budget or a business plan to be sustainable; it just needs to be useful. As long as the university continues to publish its records, and as long as students continue to find value in them, this project will remain online (and open source) for anyone to use, study, or improve.
+
+On, Wisconsin!
 
 [^1]: Usage penetration is calculated as 30,000 peak Monthly Active Users (MAU) divided by approximately 52,000 total enrolled students. Total enrollment based on [UW-Madison Fall 2025 enrollment data](https://archive.is/https://www.wisc.edu/about/facts/).
