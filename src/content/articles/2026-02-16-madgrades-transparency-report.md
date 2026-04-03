@@ -1,7 +1,7 @@
 ---
 title: "Madgrades Transparency Report 2026"
 slug: madgrades-transparency-report-2026
-description: "Who built Madgrades, how it works, what it costs, what it earns, and why it's still online."
+description: "Who built Madgrades, how it works, and why it's still online."
 date: 2026-02-16
 tags: ["madgrades", "open-source"]
 ---
